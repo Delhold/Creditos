@@ -1,23 +1,27 @@
+package web.controlador;
+
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import web.Cliente;
+import web.modelo.Cliente;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 @WebServlet("/CreditoServlet")
 
 public class CreditoServlet extends HttpServlet {
+    @Override
         protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             HttpSession session = request.getSession();
             Cliente cliente = (Cliente) session.getAttribute("cliente");
 
             if (cliente == null) {
-                response.sendRedirect("index.html");
+                RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
+                rd.forward(request, response);
                 return;
             }
 
@@ -30,6 +34,7 @@ public class CreditoServlet extends HttpServlet {
 
             session.setAttribute("cliente", cliente);
 
-            response.sendRedirect("resultado.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/vistas/resultado.jsp");
+        rd.forward(request, response);
         }
     }

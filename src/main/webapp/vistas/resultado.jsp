@@ -8,7 +8,7 @@
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<%@ page import="web.Cliente" %>
+<%@ page import="web.modelo.Cliente" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,12 +30,12 @@
 <p>Plazo: <%= cliente.getPlazo() %> meses</p>
 <p>Total: $<%= cliente.getMontoCredito() * (1 + cliente.getInteres()) %></p>
 <p>Pagos de: $<%= cliente.getPagoMensual() %> mensuales</p>
-<form action="index.html" method="post">
+<form action="${pageContext.request.contextPath}/index.jsp" method="post">
     ¿Desea calcular otro monto? <input type="submit" value="Si/No">
 </form>
 <%
     } else {
-        response.sendRedirect("index.html");
+        response.sendRedirect("index.jsp");
     }
 %>
 </body>

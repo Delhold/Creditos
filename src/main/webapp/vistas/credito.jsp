@@ -1,4 +1,4 @@
-<%@ page import="web.Cliente" %><%--
+<%@ page import="web.modelo.Cliente" %><%--
   Created by IntelliJ IDEA.
   Estudiante: Dario Verdezoto
   Date: 30/5/2024
@@ -14,7 +14,7 @@
 </head>
 <body>
 <h2>Credito del Cliente</h2>
-<form action="CreditoServlet"method="post">
+<form action="${pageContext.request.contextPath}/CreditoServlet"method="post">
     Monto de Credito: <input type="number" name="monto" required>
     Plazo:
     <select name="plazo">

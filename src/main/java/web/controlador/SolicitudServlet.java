@@ -1,17 +1,20 @@
+package web.controlador;
+
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import web.Cliente;
+import web.modelo.Cliente;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 
 @WebServlet("/SolicitudServlet")
 public class SolicitudServlet extends HttpServlet {
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String nombre = request.getParameter("nombre");
         String sexo = request.getParameter("sexo");
@@ -19,7 +22,8 @@ public class SolicitudServlet extends HttpServlet {
         double sueldo = Double.parseDouble(request.getParameter("sueldo"));
 
         if (sueldo <= 700) {
-            response.sendRedirect("solicitud.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+            rd.forward(request, response);
             return;
         }
 
@@ -32,6 +36,7 @@ public class SolicitudServlet extends HttpServlet {
         HttpSession session = request.getSession();
         session.setAttribute("cliente", cliente);
 
-        response.sendRedirect("credito.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+        rd.forward(request, response);
     }
 }

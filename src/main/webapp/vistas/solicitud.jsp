@@ -14,7 +14,7 @@
 </head>
 <body>
 <h2>Solicitud de Cliente</h2>
-<form action="SolicitudServlet" method="post">
+<form action="${pageContext.request.contextPath}/SolicitudServlet" method="post">
     Nombre: <input type="text" name="nombre" required><br>
     Sexo: <input type="text" name="sexo" required><br>
     Edad: <input type="number" name="edad" required><br>

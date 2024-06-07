@@ -1,4 +1,4 @@
-package web;
+package web.modelo;
 
 public class Cliente {
     private String nombre;
